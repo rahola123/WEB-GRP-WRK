@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title>Login & Registration</title>
+</head>
+<body>
+ <div class="wrapper">
+    <nav class="nav">
+        <div class="nav-logo">
+            <p>Peak Fitness</p>
+        </div>
+        <div class="nav-menu" id="navMenu">
+            <ul>
+                <li><a href="file:///C:/Users/stell/OneDrive/Desktop/IA%232/Peak/Login%26Reg/Peak.html" class="link active">Home</a></li>
+                <li><a href= "file:///C:/Users/stell/OneDrive/Desktop/IA%232/Peak/About/About.html" class="link">About</a></li>
+            </ul>
+        </div>
+        <div class="nav-button">
+            <button class="btn white-btn" id="loginBtn" onclick="login()">Sign In</button>
+            <button class="btn" id="registerBtn" onclick="register()">Sign Up</button>
+        </div>
+        <div class="nav-menu-btn">
+            <i class="bx bx-menu" onclick="myMenuFunction()"></i>
+        </div>
+    </nav>
+
+<!----------------------------- Form box ----------------------------------->    
+    <div class="form-box">
+        
+        <!------------------- login form -------------------------->
+
+        <div class="login-container" id="login">
+            <div class="top">
+                <span>Don't have an account? <a href="#" onclick="register()">Sign Up</a></span>
+                <header>Login</header>
+            </div>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="input-box">
+                    <input type="text" id="username" class="input-field" placeholder="Username or Email" required>
+                    <i class="bx bx-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" id="password" class="input-field" placeholder="Password" required minlength="6">
+                    <i class="bx bx-lock-alt"></i>
+                </div>
+                <div class="input-box">
+                    <input type="submit" class="submit" value="Sign In">
+                </div>
+                <div class="two-col">
+                    <div class="one">
+                        <input type="checkbox" id="login-check">
+                        <label for="login-check"> Remember Me</label>
+                    </div>
+                    <div class="two">
+                        <label><a href="file:///C:/Users/stell/OneDrive/Desktop/IA%232/Peak/Error/error.html">Forgot password?</a></label>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+
+        <!------------------- registration form -------------------------->
+        <div class="register-container" id="register">
+            <div class="top">
+                <span>Have an account? <a href="#"  onclick="login()">Login</a></span>
+                <header>Sign Up</header>
+            </div>
+            <div class="two-forms">
+                <div class="input-box">
+                    <input type="text" class="input-field" placeholder="Firstname">
+                    <i class="bx bx-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="text" class="input-field" placeholder="Lastname">
+                    <i class="bx bx-user"></i>
+                </div>
+            </div>
+            <div class="input-box">
+                <input type="text" class="input-field" placeholder="Email">
+                <i class="bx bx-envelope"></i>
+            </div>
+            <div class="input-box">
+                <input type="password" class="input-field" placeholder="Password">
+                <i class="bx bx-lock-alt"></i>
+            </div>
+            <div class="input-box">
+                <input type="submit" class="submit" value="Register">
+            </div>
+            <div class="two-col">
+                <div class="one">
+                    <input type="checkbox" id="register-check">
+                    <label for="register-check"> Remember Me</label>
+                </div>
+                <div class="two">
+                    <label><a href="file:///C:/Users/stell/OneDrive/Desktop/IA%232/Peak/About/About.html">Terms & conditions</a></label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>   
+
+
+<script>
+    let failedAttempts = 0; // Initialize failed attempts counter
+   
+   function myMenuFunction() {
+    var i = document.getElementById("navMenu");
+
+    if(i.className === "nav-menu") {
+        i.className += " responsive";
+    } else {
+        i.className = "nav-menu";
+    }
+   }
+ 
+
+
+    var a = document.getElementById("loginBtn");
+    var b = document.getElementById("registerBtn");
+    var x = document.getElementById("login");
+    var y = document.getElementById("register");
+
+    function login() {
+        x.style.left = "4px";
+        y.style.right = "-520px";
+        a.className += " white-btn";
+        b.className = "btn";
+        x.style.opacity = 1;
+        y.style.opacity = 0;
+    }
+
+    function register() {
+        x.style.left = "-510px";
+        y.style.right = "5px";
+        a.className = "btn";
+        b.className += " white-btn";
+        x.style.opacity = 0;
+        y.style.opacity = 1;
+    }
+
+
+    // Default credentials
+    const DEFAULT_USERNAME = "admin";
+    const DEFAULT_PASSWORD = "admin123";
+ 
+    function myMenuFunction() {
+        const navMenu = document.getElementById("navMenu");
+        navMenu.classList.toggle("responsive");
+    }
+ 
+  
+    function handleLogin(event) {
+        event.preventDefault();
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+ 
+        // Check for default login first
+
+ 
+        if (username === DEFAULT_USERNAME && password === DEFAULT_PASSWORD) {
+            alert("Login successful!");
+            window.location.href = "file:///C:/Users/stell/OneDrive/Desktop/IA%232/Peak/Products/Products.html";
+        } else {
+            failedAttempts++; // Increment failed attempts
+            alert("Incorrect username or password.");
+
+        // Redirect to error page after three attempts
+        if (failedAttempts >= 3) {
+            alert("Too many failed attempts. Redirecting to error page.");
+            window.location.href = "file:///C:/Users/stell/OneDrive/Desktop/IA%232/Peak/Error/error.html"; // Replace with your error page
+        }
+    }
+}
+    function handleRegister(event) {
+
+        login();
+    }
+    
+ </script>
+ 
+
+
+
+
+
+</body>
+</html>

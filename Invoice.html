@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <link rel="stylesheet" href="invoice.css">
+</head>
+<body>
+
+<div class="wrapper">
+    <nav class="nav">
+        <div class="nav-logo">
+            <p>Peak Fitness</p>
+        </div>
+        <div class="nav-menu" id="navMenu">
+            <ul>
+                <li><a href="file:///C:/Users/stell/OneDrive/Desktop/IA%232/Peak/Login%26Reg/Peak.html" class="link">Signout</a></li>
+                <li><a href="file:///C:/Users/stell/OneDrive/Desktop/IA%232/Peak/About/About.html" class="link">About</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section>
+        <div class="invoice-container">
+            <h1>Invoice</h1>
+            <h2>Your Items</h2>
+            <div id="items-list"></div>
+            <p id="total-amount"></p>
+            <p id="tax-amount"></p>
+            <p id="final-amount"></p>
+            <button aria-label="Print this invoice" onclick="printInvoice()">Print Invoice</button>
+            <button aria-label="Cancel and return to shopping" onclick="cancel()">Cancel</button>
+        </div>
+    </section>
+</div>
+
+<script>
+    // Define the tax rate
+    const TAX_RATE = 0.05; // 5%
+
+    // Get cart data from local storage
+    const cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const totalAmount = parseFloat(localStorage.getItem('totalAmount')) || 0;
+
+    const itemsListDiv = document.getElementById('items-list');
+    if (cart.length > 0) {
+        cart.forEach(item => {
+            const itemDiv = document.createElement('div');
+            itemDiv.innerText = `${item.name} - $${item.price.toFixed(2)} (Quantity: ${item.quantity})`;
+            itemsListDiv.appendChild(itemDiv);
+        });
+    } else {
+        itemsListDiv.innerText = 'No items in your cart.';
+        itemsListDiv.style.color = 'red'; 
+    }
+
+    document.getElementById('total-amount').innerText = `Subtotal: $${totalAmount.toFixed(2)}`;
+
+    // Calculate tax and final amount
+    const taxAmount = totalAmount * TAX_RATE;
+    const finalAmount = totalAmount + taxAmount;
+
+    document.getElementById('tax-amount').innerText = `Tax (5%): $${taxAmount.toFixed(2)}`;
+    document.getElementById('final-amount').innerText = `Total Amount: $${finalAmount.toFixed(2)}`;
+
+    function printInvoice() {
+        window.print();
+    }
+
+    function cancel() {
+        if (confirm("Are you sure you want to cancel?")) {
+            window.location.href = "file:///C:/Users/stell/OneDrive/Desktop/IA%232/Peak/Products/Products.html";
+        }
+    }
+</script>
+
+</body>
+</html>
