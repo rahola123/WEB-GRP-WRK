@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="Shop.css">
     <title>Products</title>
 </head>
-
 <body>
 <main>  
     <div class="wrapper">
@@ -20,8 +19,8 @@
                 <ul>
                     <li><a href="file:///C:/Users/stell/OneDrive/Desktop/IA%232/Peak/Login%26Reg/Peak.html"  class="link">Logout</a></li>
                     <li><a href="file:///C:/Users/stell/OneDrive/Desktop/IA%232/Peak/Products/Products.html"  class="link active">Products</a></li>
-                    <li><a button onclick="checkout()" class="link">Checkout</a></li>
-                    <li><a href= "file:///C:/Users/stell/OneDrive/Desktop/IA%232/Peak/About/About.html" class="link">About</a></li>
+                    <li><a href="javascript:void(0);" onclick="checkout()" class="link">Checkout</a></li>
+                    <li><a href="file:///C:/Users/stell/OneDrive/Desktop/IA%232/Peak/About/About.html" class="link">About</a></li>
                 </ul>
             </div>
 
@@ -30,109 +29,25 @@
             </div>
         </nav>
 
-        <script>removeFromCart()</script>
-
-        <script src="script.js"></script>
-
+        <!-- Product listing section -->
         <section class="shop" id="shop">
-            <div class="shop-container">
-                <div class="box">
-                    <img src="shake.jpg" alt="Protein Shake">
-                    <h4>Protein Shake</h4>
-                    <h5>$10.00</h5>
-                    <div class="cart">
-                        <button onclick="addToCart('Protein Shake', 10)"><i class='bx bxs-cart'></i></button>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <img src="dumb.jpg" alt="Dumbbell">
-                    <h4>Dumbbell</h4>
-                    <h5>$35.00</h5>
-                    <div class="cart">
-                        <button onclick="addToCart('Dumbbell', 35)"><i class='bx bxs-cart'></i></button>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <img src="barbell.jpg" alt="Barbell Set">
-                    <h4>Barbell Set</h4>
-                    <h5>$35.00</h5>
-                    <div class="cart">
-                        <button onclick="addToCart('Barbell Set', 35)"><i class='bx bxs-cart'></i></button>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <img src="kbell.jpg" alt="Kettlebell">
-                    <h4>Kettlebell</h4>
-                    <h5>$35.00</h5>
-                    <div class="cart">
-                        <button onclick="addToCart('Kettlebell', 35)"><i class='bx bxs-cart'></i></button>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <img src="rope.jpg" alt="Jump Rope">
-                    <h4>Jump Rope</h4>
-                    <h5>$15.00</h5>
-                    <div class="cart">
-                        <button onclick="addToCart('Jump Rope', 15)"><i class='bx bxs-cart'></i></button>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <img src="ankle.jpg" alt="Ankle Weights">
-                    <h4>Ankle Weights</h4>
-                    <h5>$25.00</h5>
-                    <div class="cart">
-                        <button onclick="addToCart('Ankle Weights', 25)"><i class='bx bxs-cart'></i></button>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <img src="resist.jpg" alt="Resistance Bands">
-                    <h4>Resistance Bands</h4>
-                    <h5>$5.00</h5>
-                    <div class="cart">
-                        <button onclick="addToCart('Resistance Bands', 5)"><i class='bx bxs-cart'></i></button>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <img src="mat.jpg" alt="Yoga Mat">
-                    <h4>Yoga Mat</h4>
-                    <h5>$10.00</h5>
-                    <div class="cart">
-                        <button onclick="addToCart('Yoga Mat', 10)"><i class='bx bxs-cart'></i></button>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <img src="ball.jpg" alt="Exercise Ball">
-                    <h4>Exercise Ball</h4>
-                    <h5>$10.00</h5>
-                    <div class="cart">
-                        <button onclick="addToCart('Exercise Ball', 10)"><i class='bx bxs-cart'></i></button>
-                    </div>
-                </div>
-            </div>
+            <div class="shop-container"></div> <!-- Product items will be inserted here -->
         </section>
 
+        
         <section id="checkout">
-            <h2>Checkout</h2>
+            <h2>Your Chart</h2>
             <div id="check">
-                <h3>Your Cart</h3>
+                <h3>Your items</h3>
                 <div id="cart-items"></div>
                 <p id="total-price">Total: $0.00</p>
                 <button onclick="checkout()">Proceed to Checkout</button>
             </div>
         </section>
-    
-    </div>
-    
-</main>
+        
+        <script src="scriptCopy.js"></script>
 
-<script src="script.js"></script>
+    </div>
+</main>
 </body>
 </html>
