@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="Cart.css">
+    <title>Cart</title>
+</head>
+<body>
+<main>  
+    <div class="wrapper">
+        <nav class="nav">
+            <div class="nav-logo">
+                <p>Peak Fitness</p>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="file:///C:/Users/stell/OneDrive/Desktop/IA%232/Peak/Login%26Reg/Peak.html"  class="link">Logout</a></li>
+                    <li><a href="file:///C:/Users/stell/OneDrive/Desktop/IA%232/Peak/Products/Products.html"  class="link ">Products</a></li>
+                    <li><a href="file:///C:/Users/stell/OneDrive/Desktop/IA%232/Peak/Products/Cart.html"  class="link active ">Chart</a></li>
+                    <li><a href="javascript:void(0);" onclick="checkout()" class="link">Checkout</a></li>
+                    <li><a href="file:///C:/Users/stell/OneDrive/Desktop/IA%232/Peak/About/About.html" class="link">About</a></li>
+                </ul>
+            </div>
+            <div class="nav-menu-btn">
+                <i class="bx bx-menu" onclick="myMenuFunction()"></i>
+            </div>
+        </nav>
+
+        <section id="checkout">
+            <h2>Your Cart</h2>
+            <div id="check">
+                <h3>Your items</h3>
+                <div id="cart-items"></div>
+                <p id="total-price">Total: $0.00</p>
+                <button onclick="clearCart()">Clear All</button>
+                <button onclick="checkout()">Proceed to Checkout</button>
+                <button onclick="closeCart()">Close Cart</button>
+            </div>
+        </section>
+        
+        <script src="Cart.js"></script>
+    </div>
+</main>
+</body>
+</html>
