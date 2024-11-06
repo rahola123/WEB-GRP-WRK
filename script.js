@@ -3,13 +3,13 @@ let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
 let total = parseFloat(localStorage.getItem('totalAmount')) || 0;
 
 // Array of products
-const Allproducts = [
+const products = [
     { name: 'Protein Shake', price: 10, image: 'shake.jpg' , desc: 'To get big and have fast healhty Portein'},
-    { name: 'Dumbbell', price: 35, image: 'dumb.jpg' , desc:'To get big and have fast healhty Portein' },
     { name: 'Barbell Set', price: 35, image: 'barbell.jpg' , desc:'To get big and have fast healhty Portein'},
-    { name: 'Kettlebell', price: 35, image: 'kbell.jpg', desc:'To get big and have fast healhty Portein'},
+    { name: 'Kettlebell', price: 35, image: 'kbell.jpg', desc: 'To get big and have fast healhty Portein'},
+    { name: 'Jump Rope', price: 15, image: 'rope.jpg', desc: 'To get big and have fast healhty Portein'},
     { name: 'Ankle Weights', price: 25, image: 'ankle.jpg', desc: 'To get big and have fast healhty Portein'},
-    { name: 'Resistance Bands', price: 5, image: 'resist.jpg', desc:'To get big and have fast healhty Portein' },
+    { name: 'Resistance Bands', price: 5, image: 'resist.jpg', desc: 'To get big and have fast healhty Portein'},
     { name: 'Yoga Mat', price: 10, image: 'mat.jpg' , desc:'To get big and have fast healhty Portein'},
     { name: 'Exercise Ball', price: 10, image: 'ball.jpg' , desc:'To get big and have fast healhty Portein'}
 ];
@@ -19,7 +19,7 @@ function displayProducts() {
     const shopContainer = document.querySelector('.shop-container'); // Get the container where products will be displayed
 
     // Loop through each product in the array
-    Allproducts.forEach(product => {
+    products.forEach(product => {
         // Create the HTML for each product
         const productHTML = `
             <div class="box">
@@ -136,4 +136,3 @@ window.onload = function() {
     displayProducts();
     updateCartDisplay();
 };
-
