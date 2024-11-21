@@ -1,0 +1,164 @@
+let paymentCompleted = false; // Declare paymentCompleted
+
+// Define the tax rate
+const SHIP_RATE = 0.05; // 5% tax
+const TAX_RATE = 0.07; // 7% tax
+const DISCOUNT_RATE = 0.1; // 10% discount
+
+
+// Initialize valid flag
+let valid = true;
+
+// Get cart data from local storage
+const cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+const totalAmount = parseFloat(localStorage.getItem('totalAmount')) || 0;
+const itemsListDiv = document.getElementById('items-list');
+const users = JSON.parse(localStorage.getItem('users')) || [];
+
+// Disable print button initially
+document.getElementById('print').disabled = true;
+document.getElementById('check').disabled = false;
+
+// Display cart items
+if (cart.length > 0) {
+    cart.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.innerText = `${item.name} - $${item.price.toFixed(2)} (Quantity: ${item.quantity})`;
+        itemsListDiv.appendChild(itemDiv);
+    });
+} else {
+    itemsListDiv.innerText = 'No items in your cart.';
+    itemsListDiv.style.color = 'red'; 
+}
+
+
+// Calculate tax and final amount
+const taxAmount = TAX_RATE;
+const shipAmount = SHIP_RATE;
+const disAmount = DISCOUNT_RATE;
+
+
+document.getElementById('tax-amount').innerText = `+Tax (7%)`;
+document.getElementById('dis-amount').innerText = `-Discount (10%)`;
+document.getElementById('Ship-amount').innerText = `+Shipping Tax (5%)`;
+document.getElementById('final-amount').innerText = `Total Amount: $${totalAmount.toFixed(2)}`;
+
+// Cancel checkout and go back to product page
+function cancel() {
+    if (confirm("Are you sure you want to cancel?")) {
+        window.location.href = "file:///C:/Users/stell/OneDrive/Peak/Products/NewPro.html"; // Update to your product catalog URL
+    }
+}
+
+// Print invoice only after payment is completed
+function printInvoice() {
+    if (!paymentCompleted) {
+        alert("Please complete your payment before printing the invoice.");
+        return; 
+    }
+    // Trigger the browser's print dialog
+    window.print();
+}
+
+// Validate card details (card name, number, expiration, CVV)
+function validateCardDetails() {
+    const cardname = document.getElementById('cardname').value.trim();
+    const cardnumber = document.getElementById('cardnumber').value.trim();
+    const expmonth = document.getElementById('expmonth').value.trim();
+    const expyear = document.getElementById('expyear').value.trim();
+    const cvv = document.getElementById('cvv').value.trim();
+
+    // Check for empty fields
+    if (!cardname || !cardnumber || !expmonth || !expyear || !cvv) {
+        alert("All credit card details (Name, Number, Expiration Date, CVV) are required.");
+        return false; // Return false if validation fails
+    }
+
+    // Validate card number (16 digits)
+    const cardNumberRegex = /^\d{16}$/;
+    if (!cardNumberRegex.test(cardnumber)) {
+        alert("Please enter a valid 16-digit credit card number.");
+        return false;
+    }
+
+    // Validate expiration date
+    const currentYear = new Date().getFullYear();
+    const currentMonth = new Date().getMonth() + 1;
+
+    if (expmonth > 12 || expmonth < 1) {
+        alert("The expiration Month must be a month between 1 and 12.");
+        return false;
+    }
+
+    if (expyear < currentYear || (expyear == currentYear && expmonth < currentMonth)) {
+        alert("The expiration date cannot be in the past.");
+        return false;
+    }
+
+    // Validate CVV (3 digits)
+    const cvvRegex = /^\d{3}$/;
+    if (!cvvRegex.test(cvv)) {
+        alert("Please enter a valid 3-digit CVV.");
+        return false;
+    }
+
+    return true; // Return true if all checks pass
+}
+
+// Place order and redirect to display page
+function placeOrder() {
+    window.location.href = "Display.html"; // Update to your dashboard URL
+}
+
+// Validate payment details (payment amount must be at least total amount)
+function validatePayment() {
+    const paymentAmount = parseFloat(document.getElementById('Pay').value);
+
+    if (isNaN(paymentAmount) || paymentAmount < finalAmount) {
+        alert(`The payment amount must be at least $${finalAmount.toFixed(2)}`);
+        return false;
+    }
+
+    alert("The payment has been successfully made.");
+    paymentCompleted = true;
+    document.getElementById('print').disabled = false; // Enable print button
+    return true;
+}
+
+// Handle customer information validation (shipping address)
+function validateCusinfo() {
+    const customerData = {
+        address1: document.getElementById('Address').value.trim(),
+        address: document.getElementById('Address1').value.trim()
+    };
+
+    if (!customerData.address || !customerData.address1 ) {
+        alert("Please fill out all fields.");
+        return null; // Return null if validation fails
+    }
+
+    localStorage.setItem('customerInfo', JSON.stringify(customerData)); // Save customer data to localStorage
+    return customerData; // Return customerData for further use
+}
+
+// Perform all validations in sequence
+function validationFinal() {
+    const customerData = validateCusinfo(); // Get customer data
+    if (customerData === null) {
+        return false; // Stop if customer info validation fails
+    }
+
+    const cardValid = validateCardDetails();
+    if (!cardValid) {
+        return false; // Stop if card validation fails
+    }
+
+    const paymentValid = validatePayment();
+    if (!paymentValid) {
+        return false; // Stop if payment validation fails
+    }
+
+    alert("All validations passed! Proceeding with the next steps.");
+    document.getElementById('check').disabled = true; // Disable check button after successful validation
+    return true;
+}
