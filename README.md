@@ -69,34 +69,34 @@ Various tools were used to envision and build the website:
 
 <h1 align = "center">Group Details</h1>
 
-<h4>Raheem</h4>
+<h4>Raheem Olakunle</h4>
 <ul>
-  <li>ID</li>
-  <li>Email</li>
+  <li>ID:2304979</li>
+  <li>Email: raheemok90@gmail.com</li>
+  <li>Role:  </li>
+</ul>
+
+<br>
+
+<h4>Jevaun Saunderson </h4>
+<ul>
+  <li>ID: 2306776</li>
+  <li>Email:a=sandersonjevaun10@gmail.com</li>
   <li>Role</li>
 </ul>
 
 <br>
 
-<h4>Jay</h4>
+<h4>Khaliyah Davis</h4>
 <ul>
-  <li>ID</li>
-  <li>Email</li>
+  <li>ID: 2303823</li>
+  <li>Email: khaliyahdavis475@gmail.com</li>
   <li>Role</li>
 </ul>
 
 <br>
 
-<h4>Kai</h4>
-<ul>
-  <li>ID</li>
-  <li>Email</li>
-  <li>Role</li>
-</ul>
-
-<br>
-
-<h4>Sulph</h4>
+<h4> Mikel Sulph</h4>
 <ul>
   <li>ID</li>
   <li>Email</li>
