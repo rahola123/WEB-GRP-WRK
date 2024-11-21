@@ -12,6 +12,7 @@
  <div class="wrapper">
     <nav class="nav">
         <div class="nav-logo">
+            
             <p>Peak Fitness</p>
         </div>
         <div class="nav-menu" id="navMenu">
@@ -21,8 +22,8 @@
             </ul>
         </div>
         <div class="nav-button">
-            <button class="btn white-btn" id="loginBtn" onclick="login()">Sign In</button>
-            <button class="btn" id="registerBtn" onclick="register()">Sign Up</button>
+            <button class="btn white-btn" id="loginBtn" onclick="logMove() , showCompleteLocalStorage(); ">Sign In</button>
+            <button class="btn" id="registerBtn" onclick="regMove() ">Sign Up</button>
         </div>
         <div class="nav-menu-btn">
             <i class="bx bx-menu" onclick="myMenuFunction()"></i>
@@ -31,25 +32,25 @@
 
 <!----------------------------- Form box ----------------------------------->    
     <div class="form-box">
-        
+
         <!------------------- login form -------------------------->
 
         <div class="login-container" id="login">
             <div class="top">
-                <span>Don't have an account? <a href="#" onclick="register()">Sign Up</a></span>
+                <span>Don't have an account? <a href="#" onclick="regMove()">Sign Up</a></span>
                 <header>Login</header>
             </div>
-            <form id="loginForm" onsubmit="handleLogin(event)">
+            <form id="loginForm" >
                 <div class="input-box">
-                    <input type="text" id="username" class="input-field" placeholder="TRN" required>
+                    <input type="text" id="TRN" class="input-field" placeholder="TRN" required>
                     <i class="bx bx-user"></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" id="password" class="input-field" placeholder="Password" required minlength="6">
+                    <input type="password" id="password" class="input-field" placeholder="Password" required minlength="8">
                     <i class="bx bx-lock-alt"></i>
                 </div>
                 <div class="input-box">
-                    <input type="submit" class="submit" value="Sign In">
+                    <input type="button" onclick="handleLogin()" value="Login">
                 </div>
                 <div class="two-col">
                     <div class="one">
@@ -62,21 +63,21 @@
                 </div>
             </form>
         </div>
-         
+
 
         <!------------------- registration form -------------------------->
         <div class="register-container" id="register">
-            <div class="bottom">
-                <span>Have an account? <a href="#"  onclick="login()">Login</a></span>
+            <div class="top">
+                <span>Have an account? <a href="#"  onclick="logMove() ">Login</a></span>
                 <header>Register</header>
             </div>
-            <div class="two-forms">
+            <div class="two-forms" >
                 <div class="input-box">
-                    <input type="text" class="input-field" placeholder="Firstname">
+                    <input type="text" class="input-field" placeholder="Firstname" id="firstName">
                     <i class="bx bx-user"></i>
                 </div>
                 <div class="input-box">
-                    <input type="text" class="input-field" placeholder="Lastname">
+                    <input type="text" class="input-field" placeholder="Lastname" id="lastName">
                     <i class="bx bx-user"></i>
                 </div>
             </div>
@@ -91,38 +92,45 @@
             </div>
 
             <div class="input-box">
-                <input type="text" class="input-field" placeholder="Gender" required>
+                <input type="text" class="input-field" placeholder="Gender" required id="gender">
                 <i class="bx bx-user"></i>
             </div>
 
             <div class="input-box">
-                <input type="text" class="input-field" placeholder="TRN" required>
+                <input type="text" class="input-field" placeholder="TRN (000-000-000)"  required id="registerTRN" pattern="\d{3}-\d{3}-\d{3}" >
                 <i class="bx bx-user"></i>
             </div>
-            
+
             <div class="input-box">
-                <input type="text" class="input-field" placeholder="PhoneNumber">
+                <input type="text" class="input-field" placeholder="PhoneNumber" id="phoneNumber" >
                 <i class="bx bx-envelope"></i>
             </div>
 
             <div class="input-box">
-                <input type="text" class="input-field" placeholder="Email">
+                <input type="text" class="input-field" placeholder="Email" id="email">
                 <i class="bx bx-envelope"></i>
             </div>
-        
+
             <div class="input-box">
-                <input type="password" class="input-field" placeholder="Password">
+                <input type="text" class="input-field" placeholder="Address Line 1" id="Address">
+                <i class="bx bx-user"></i>
+            </div>
+
+            <div class="input-box">
+                <input type="password" class="input-field" placeholder="Password" id="registerPassword">
                 <i class="bx bx-lock-alt"></i>
             </div>
+
             <div class="input-box">
-                <input type="submit" class="submit" value="Register">
+                <input type="button" onclick="handleRegister() , showCompleteLocalStorage()" value="Register">
             </div>
+
             <div class="two-col">
                 <div class="one">
                     <input type="checkbox" id="register-check">
                     <label for="register-check"> Remember Me</label>
                 </div>
-            
+
                 <div class="two">
                     <label><a href="About.html">Terms & conditions</a></label>
                 </div>
@@ -130,7 +138,15 @@
         </div>
     </div>
 </div>   
-<script src="script.js"></script>
+<!------<script src="test.js"></script> --->
+<div id="cart-items"></div>
+<p id="total-price">Total: $0.00</p>
+
+<script src="script(1).js"></script>
+</body>
+</html>
+
+
 
 </body>
 </html>
