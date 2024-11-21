@@ -61,8 +61,8 @@ Various tools were used to envision and build the website:
 <ul>
   <li><strong>Canva</strong> - Online graphic designing tool used to create a schematic, as well as a mockup of the website.</li>
   <li><strong>Storyboard(?)</strong> - <!-- what did we/will we use for this? --></li>
-  <li><strong>Boxicons</strong> – Open source library for clean, simple vector icons that enhance the UI (user & password icons).</li>
-  <li><strong>Draw.io</strong> - Online diagram creating tool used to create a sitemap of the project. <!-- I think we can use this for the sitemaps? --></li>
+  <li><strong>Boxicons</strong> – Open source library for clean, simple vector icons that enhance the UI (user, password icons etc.).</li>
+  <li><strong>Draw.io</strong> - Online diagram creating tool used to create a sitemap of the project.</li>
 </ul>
 
 ---
@@ -98,8 +98,8 @@ Various tools were used to envision and build the website:
 
 <h4> Mikel Sulph</h4>
 <ul>
-  <li>ID</li>
-  <li>Email</li>
+  <li>ID: 2305261</li>
+  <li>Email: miksul64@gmail.com</li>
   <li>Role</li>
 </ul>
 
