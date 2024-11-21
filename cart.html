@@ -17,11 +17,11 @@
             </div>
             <div class="nav-menu" id="navMenu">
                 <ul>
-                    <li><a href="file:///C:/Users/stell/OneDrive/Desktop/IA%232/Peak/Login%26Reg/Peak.html"  class="link">Logout</a></li>
-                    <li><a href="file:///C:/Users/stell/OneDrive/Desktop/IA%232/Peak/Products/Products.html"  class="link ">Products</a></li>
-                    <li><a href="file:///C:/Users/stell/OneDrive/Desktop/IA%232/Peak/Products/Cart.html"  class="link active ">Chart</a></li>
+                    <li><a href="file:///C:/Users/stell/OneDrive/Peak/Login%26Reg/Peak.html"  class="link">Logout</a></li>
+                    <li><a href="file:///C:/Users/stell/OneDrive/Peak/Products/NewPro.html"  class="link ">Products</a></li>
+                    <li><a href="file:///C:/Users/stell/OneDrive/Peak/Products/Cart.html"  class="link active ">Chart</a></li>
                     <li><a href="javascript:void(0);" onclick="checkout()" class="link">Checkout</a></li>
-                    <li><a href="file:///C:/Users/stell/OneDrive/Desktop/IA%232/Peak/About/About.html" class="link">About</a></li>
+                    <li><a href="file:///C:/Users/stell/OneDrive/Peak/About/About.html" class="link">About</a></li>
                 </ul>
             </div>
             <div class="nav-menu-btn">
@@ -31,14 +31,17 @@
 
         <section id="checkout">
             <h2>Your Cart</h2>
-            <div id="check">
-                <h3>Your items</h3>
+            <div class="cart-container">
+                <h1>Your Shopping Cart</h1>
                 <div id="cart-items"></div>
-                <p id="total-price">Total: $0.00</p>
-                <button onclick="clearCart()">Clear All</button>
-                <button onclick="checkout()">Proceed to Checkout</button>
-                <button onclick="closeCart()">Close Cart</button>
-            </div>
+                <div id="cart-summary">
+                  <h3>Cart Summary</h3>
+                  <p id="total-price">Total: $0.00</p>
+                  <button id="clear-cart" onclick="clearCart()">Clear All</button>
+                  <button id="checkout" onclick="checkout()">Check Out</button>
+                  <button id="close-cart" onclick="closeCart()">Close Cart</button>
+                </div>
+              </div>
         </section>
         
         <script src="Cart.js"></script>
@@ -46,3 +49,4 @@
 </main>
 </body>
 </html>
+
