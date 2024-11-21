@@ -1,283 +1,198 @@
 let failedAttempts = 0; // Initialize failed attempts counter
-   
-function myMenuFunction() {
- var i = document.getElementById("navMenu");
 
- if(i.className === "nav-menu") {
-     i.className += " responsive";
- } else {
-     i.className = "nav-menu";
- }
+// Menu toggle function
+function myMenuFunction() {
+  var i = document.getElementById("navMenu");
+  if (i.className === "nav-menu") {
+    i.className += " responsive";
+  } else {
+    i.className = "nav-menu";
+  }
 }
 
+// Button references
+var a = document.getElementById("loginBtn");
+var b = document.getElementById("registerBtn");
+var x = document.getElementById("login");
+var y = document.getElementById("register");
 
-
- var a = document.getElementById("loginBtn");
- var b = document.getElementById("registerBtn");
- var x = document.getElementById("login");
- var y = document.getElementById("register");
-
- function login() {
-     x.style.left = "4px";
-     y.style.right = "-520px";
-     a.className += " white-btn";
-     b.className = "btn";
-     x.style.opacity = 1;
-     y.style.opacity = 0;
- }
-
- function register() {
-     x.style.left = "-510px";
-     y.style.right = "5px";
-     a.className = "btn";
-     b.className += " white-btn";
-     x.style.opacity = 0;
-     y.style.opacity = 1;
- }
-
-// Get references to HTML elements
-const loginContainer = document.getElementById('login');
-const registerContainer = document.getElementById('register');
-const loginForm = document.getElementById('loginForm');
-const registerForm = document.getElementById('registerForm');
-const loginBtn = document.getElementById('loginBtn');
-const registerBtn = document.getElementById('registerBtn');
-const dateOfBirthInput = document.getElementById('dateOfBirth');
-
-// Helper function to toggle between login and registration forms
-function toggleForm(showLogin) {
-  if (showLogin) {
-    loginContainer.style.display = 'block';
-    registerContainer.style.display = 'none';
-  } else {
-    loginContainer.style.display = 'none';
-    registerContainer.style.display = 'block';
+// Switch to Login Form
+function logMove() {
+  if (!a.classList.contains("white-btn")) {
+    a.classList.add("white-btn");
   }
+  b.classList.remove("white-btn");
+  x.style.left = "0";
+  y.style.left = "100%";
+  x.style.opacity = 1;
+  y.style.opacity = 0;
+}
+
+// Switch to Register Form
+function regMove() {
+  if (!b.classList.contains("white-btn")) {
+    b.classList.add("white-btn");
+  }
+  a.classList.remove("white-btn");
+  x.style.left = "-100%";
+  y.style.left = "0";
+  x.style.opacity = 0;
+  y.style.opacity = 1;
+}
+
+function checkout() {
+  const currentUser = {
+    firstName: "John", // Replace with actual user data
+    lastName: "Doe",
+    email: "johndoe@example.com",
+    address: "123 Main Street",
+  };
+
+  const cart = [
+    { name: "Item 1", price: 10, quantity: 2 },
+    { name: "Item 2", price: 15, quantity: 1 }
+  ];
+
+  const totalAmount = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
+  // Save data to localStorage
+  localStorage.setItem('currentUser', JSON.stringify(currentUser));
+  localStorage.setItem('cartItems', JSON.stringify(cart));
+  localStorage.setItem('totalAmount', totalAmount.toFixed(2));
+
+  // Redirect to the invoice page
+  window.location.href = "Invoice.html";
+}
+
+// Save updated registration data to localStorage
+function saveUsersToLocalStorage(users) {
+  localStorage.setItem('users', JSON.stringify(users)); // Ensure 'users' is the correct key
+  localStorage.setItem('currentUser', JSON.stringify(currentUser));
 }
 
 // Handle login form submission
-function handleLogin(event) {
-  event.preventDefault();
-  const username = document.getElementById('username').value;
+function handleLogin() {
+  const TRN = document.getElementById('TRN').value;
   const password = document.getElementById('password').value;
 
-  // Validate login credentials against stored data
-  if (validateLogin(username, password)) {
+   // Check if both fields are filled
+   if (!TRN || !password) {
+    alert('Please fill in both TRN and password.');
+    return;
+  }
+
+  const users = getUsersFromLocalStorage();
+  const user = users.find(u => u.trn === TRN && u.password === password);
+
+  if (user) {
     // Redirect to dashboard or home page
-    window.location.href = 'Home.html';
+    alert('Login successful!');
+    window.location.href = "file:///C:/Users/stell/OneDrive/Peak/Products/NewPro.html"; // Modify with actual destination
   } else {
     alert('Invalid TRN or password. Please try again.');
+    failedAttempts++;
+  } 
+  
+  if (failedAttempts >= 3) {
+    alert('You have reached the maximum number of login attempts. Your account is locked.');
+    window.location.href = "account_locked.html"; // Redirect to locked account or error page
   }
 }
+
+
+
 
 // Handle registration form submission
-function handleRegister(event) {
-  event.preventDefault();
-  const firstName = document.getElementById('firstName').value;
-  const lastName = document.getElementById('lastName').value;
+function handleRegister() {
+  const trn = document.getElementById('registerTRN').value.trim(); 
+  const password = document.getElementById('registerPassword').value.trim(); 
+  const firstName = document.getElementById('firstName').value.trim();
+  const lastName = document.getElementById('lastName').value.trim();
   const dateOfBirth = document.getElementById('dateOfBirth').value;
   const gender = document.getElementById('gender').value;
-  const trn = document.getElementById('trn').value;
-  const phoneNumber = document.getElementById('phoneNumber').value;
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
+  const phoneNumber = document.getElementById('phoneNumber').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const address = document.getElementById('Address').value.trim();
 
-  // Validate registration data
-  if (validateRegistration(firstName, lastName, dateOfBirth, gender, trn, phoneNumber, email, password)) {
-    // Store registration data in localStorage
-    storeRegistrationData(firstName, lastName, dateOfBirth, gender, trn, phoneNumber, email, password);
-    alert('Registration successful! Please log in.');
-    toggleForm(true); // Switch back to login form
-  }
-}
+  const users = getUsersFromLocalStorage();
 
-// Validate login credentials
-function validateLogin(username, password) {
-  // Retrieve registration data from localStorage
-  const registrationData = JSON.parse(localStorage.getItem('registrationData')) || [];
-
-  // Check if the entered TRN and password match a registered user
-  const user = registrationData.find(user => user.trn === username && user.password === password);
-  return !!user;
-}
-
-// Validate registration data
-function validateRegistration(firstName, lastName, dateOfBirth, gender, trn, phoneNumber, email, password) {
-  // Check if all fields are filled
-  if (!firstName || !lastName || !dateOfBirth || !gender || !trn || !phoneNumber || !email || !password) {
-    alert('Please fill in all the required fields.');
-    return false;
+    // Check if all fields are filled
+  if (!trn || !password || !firstName || !lastName || !dateOfBirth || !gender || !phoneNumber || !email || !address ) {
+    alert('All fields must be filled!');
+    return;
   }
 
-  // Check if the user is at least 18 years old
-  const today = new Date();
-  const birthDate = new Date(dateOfBirth);
-  const age = today.getFullYear() - birthDate.getFullYear();
-  const monthDiff = today.getMonth() - birthDate.getMonth();
-  if ((monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate()))) {
-    age--;
+   // Password length validation (at least 8 characters)
+  if (password.length < 8) {
+    alert('Password must be at least 8 characters long.');
+    return;
   }
+
+  const trnPattern = /^\d{3}-\d{3}-\d{3}$/;
+  if (!trnPattern.test(trn)) {
+    alert('TRN must be in the format: 000-000-000');
+    return;
+  }
+
+    // Age validation
+  const age = new Date().getFullYear() - new Date(dateOfBirth).getFullYear();
   if (age < 18) {
-    alert('You must be at least 18 years old to register.');
-    return false;
+    alert('You must be 18 or older to register.');
+    return;
   }
 
-  // Check if the TRN is unique
-  const registrationData = JSON.parse(localStorage.getItem('registrationData')) || [];
-  if (registrationData.some(user => user.trn === trn)) {
+  // Validate TRN for uniqueness (when registering)
+function validateTRN(trn, users) {
+  if (users.some(user => user.trn === trn)) {
     alert('The TRN you entered is already registered. Please use a unique TRN.');
     return false;
   }
-
-  // Check if the password is at least 6 characters long
-  if (password.length < 6) {
-    alert('Password must be at least 6 characters long.');
-    return false;
-  }
-
   return true;
 }
 
-// Store registration data in localStorage
-function storeRegistrationData(firstName, lastName, dateOfBirth, gender, trn, phoneNumber, email, password) {
-  const registrationData = JSON.parse(localStorage.getItem('registrationData')) || [];
-  registrationData.push({ firstName, lastName, dateOfBirth, gender, trn, phoneNumber, email, password });
-  localStorage.setItem('registrationData', JSON.stringify(registrationData));
-}
+  // Validate TRN and other fields (if needed)
+  if (validateTRN(trn, users)) {
+    // Proceed with registration
+    alert("User registered successfully!");
 
-// Utility function to safely get data from localStorage
-function getStoredData(key) {
-  try {
-    const data = localStorage.getItem(key);
-    return data ? JSON.parse(data) : [];
-  } catch (error) {
-    console.error('Error reading from localStorage:', error);
-    return [];
+    // Add the new user to the users array
+    users.push({ trn, password, firstName, lastName, dateOfBirth, gender, phoneNumber, email , address });
+    saveUsersToLocalStorage(users);
+
+    logMove(); // Switch back to login form after registration
   }
 }
 
-// Utility function to safely store data in localStorage
-function setStoredData(key, data) {
-  try {
-    localStorage.setItem(key, JSON.stringify(data));
-    return true;
-  } catch (error) {
-    console.error('Error writing to localStorage:', error);
-    return false;
+
+
+function clearData() {
+  localStorage.removeItem('users');
+  console.log("User data cleared from localStorage");
+}
+
+// Example usage to show localStorage contents (for debugging)
+console.log(localStorage);
+
+// Example function to show the complete localStorage contents
+function showCompleteLocalStorage() {
+  // Log all the keys and values stored in localStorage
+  for (let i = 0; i < localStorage.length; i++) {
+    let key = localStorage.key(i);
+    let value = localStorage.getItem(key);
+    console.log(`${key}: ${value}`);
   }
 }
 
-// Validate password
-function validatePassword(password) {
-  return password.length >= 8;
+// Call the function to display localStorage in the console
+
+// Retrieve the "users" array
+const users = JSON.parse(localStorage.getItem('users'));
+
+// Ensure the index exists
+const index = 0; // Change this to any index you want to access
+if (users && users.length > index) {
+  const userAtIndex = users[index];
+  console.log(userAtIndex);  // Logs the user object at the given index
+} else {
+  console.log("Index out of bounds or no users in localStorage.");
 }
-
-// Validate age (must be over 18)
-function validateAge(dateOfBirth) {
-  const today = new Date();
-  const birthDate = new Date(dateOfBirth);
-  let age = today.getFullYear() - birthDate.getFullYear();
-  const monthDiff = today.getMonth() - birthDate.getMonth();
-
-  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-    age--;
-  }
-
-  return age >= 18;
-}
-
-// Validate TRN format (000-000-000)
-function validateTRN(trn) {
-  const trnPattern = /^\d{3}-\d{3}-\d{3}$/;
-  return trnPattern.test(trn);
-}
-
-// Check if TRN is unique
-function isTRNUnique(trn) {
-  const existingData = getStoredData('RegistrationData');
-  return !existingData.some(user => user.trn === trn);
-}
-
-// Store registration data
-function storeRegistration(formData) {
-  // Create registration object with all user data
-  const registration = {
-    Firstname: formData.Firstname,
-    Lastname: formData.Lastname,
-    dateOfBirth: formData.dateOfBirth,
-    Gender: formData.Gender,
-    phoneNumber: formData.phoneNumber,
-    Email: formData.Email,
-    TRN: formData.TRN,
-    Password: formData.Password,
-    dateOfRegistration: new Date().toISOString(),
-    cart: JSON.stringify({}),  // Initialize empty cart as JSON string
-    invoices: JSON.stringify([])  // Initialize empty invoices array as JSON string
-  };
-
-  // Get existing data from localStorage
-  let existingData = getStoredData('RegistrationData');
-
-  // Append new registration
-  existingData.push(registration);
-
-  // Store updated data
-  return setStoredData('RegistrationData', existingData);
-}
-
-// Main registration function
-function register(formData) {
-  // Validate password
-  if (!validatePassword(formData.Password)) {
-    return { success: false, error: 'Password must be at least 8 characters long' };
-  }
-
-  // Validate age
-  if (!validateAge(formData.dateOfBirth)) {
-    return { success: false, error: 'Must be over 18 years old to register' };
-  }
-
-  // Validate TRN format
-  if (!validateTRN(formData.TRN)) {
-    return { success: false, error: 'Invalid TRN format. Use format: 000-000-000' };
-  }
-
-  // Check TRN uniqueness
-  if (!isTRNUnique(formData.TRN)) {
-    return { success: false, error: 'TRN already exists' };
-  }
-
-  // Store registration if all validations pass
-  const stored = storeRegistration(formData);
-  
-  if (!stored) {
-    return { success: false, error: 'Error storing registration data' };
-  }
-  
-  return { success: true, message: 'Registration successful' };
-}
-
-// Utility function to retrieve user data
-function getUserData(TRN) {
-  try {
-    const existingData = getStoredData('RegistrationData');
-    const userData = existingData.find(user => user.TRN=== TRN);
-    
-    if (userData) {
-      // Parse JSON strings back to objects/arrays
-      userData.cart = JSON.parse(userData.cart);
-      userData.invoices = JSON.parse(userData.invoices);
-    }
-    
-    return userData || null;
-  } catch (error) {
-    console.error('Error retrieving user data:', error);
-    return null;
-  }
-}
-
-// Attach event listeners
-loginForm.addEventListener('submit', handleLogin);
-registerForm.addEventListener('submit', handleRegister);
-loginBtn.addEventListener('click', () => toggleForm(true));
-registerBtn.addEventListener('click', () => toggleForm(false));
