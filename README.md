@@ -26,6 +26,7 @@ Peak Fitness is a simple e-commerce website designed with HTML, CSS and Javascri
 1. Ensure all the files are within the same folder.
 2. Open `Peak.html` in any browser.
 3. You may sign in using default credentials:<br>
+
 *Username:* admin<br>		
 *Passwowrd:* admin123
 <!-- 4. Or register by filling out the fields with a password 6 characters or longer. //non-functionality, leaving this part out for now -->
