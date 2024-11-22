@@ -112,7 +112,7 @@ function saveToLocalStorage() {
 
 function closeCart() {
     // You can either hide the cart modal or navigate back
-    window.location.href = "file:///C:/Users/stell/OneDrive/Peak/Products/NewPro.html"; // Example: redirect to the products page
+    window.location.href = "Products.html"; // Example: redirect to the products page
 }
 
 // Function to handle checkout
@@ -137,7 +137,6 @@ window.onload = function() {
     updateCartDisplay();
 
 };
-
 
 
 

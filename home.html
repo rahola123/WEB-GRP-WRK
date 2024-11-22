@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="home.css">
+    <title>Home</title>
+</head>
+<body>
+ <div class="wrapper">
+    <nav class="nav">
+        <div class="nav-logo">
+            <p>Peak Fitness</p>
+        </div>
+        <div class="nav-menu" id="navMenu">
+            <ul>
+                <li><a href="Home.html" class="link active">Home</a></li>
+                <li><a href= "Dashboard.html" class="link">Dashboard</a></li>
+                <li><a href="Products.html"  class="link active">Products</a></li>
+                <li><a href="Cart.html"  class="link ">Cart</a></li>
+                <li><a href= "About.html" class="link">About</a></li>
+            </ul>
+        </div>
+        <div class="nav-menu-btn">
+            <i class="bx bx-menu" onclick="myMenuFunction()"></i>
+        </div>
+    </nav>
+
+    <main class="homepage">
+        <div class="hero-section">
+            <img 
+                src="gym1.jpeg" 
+                alt="Peak Fitness gym interior" 
+                class="hero-image"
+                width="1200"
+                height="800"
+            >
+            <div class="hero-content">
+                <h1>Welcome to Peak Fitness!</h1>
+                <a href="Products.html" class="cta-button">
+                    <button type="button">View Now</button>
+                </a>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script>
+    function myMenuFunction() {
+        const navMenu = document.getElementById('navMenu');
+        navMenu.classList.toggle('active');
+    }
+</script>
+
+</body>
+</html>

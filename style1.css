@@ -10,7 +10,7 @@
 }
 
 body {
-    background: #fffaf0; /* Light Grey */
+    background:#4A90E2; /* Light Grey */
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -39,7 +39,7 @@ body {
 }
 
 .nav-logo p {
-    color: #1E2A38; /* Navy Blue */
+    color: #fff; /* Navy Blue */
     font-size: 25px;
     font-weight: 600;
 }
@@ -103,19 +103,26 @@ body {
     align-items: center;
     justify-content: center;
     width: 512px;
-    height: 812px;
+    height: 910px;
     overflow: hidden;
     z-index: 2;
 }
-
-.login-container, .register-container {
+.login-container{
     position: absolute;
+    left: 4px;
     width: 500px;
     display: flex;
     flex-direction: column;
     transition: .5s ease-in-out;
 }
-
+.register-container{
+    position: absolute;
+    right: -520px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    transition: .5s ease-in-out;
+}
 .top span {
     color: #FFFFFF;
     font-size: small;
@@ -125,7 +132,7 @@ body {
 }
 
 header {
-    color: #1F4591; /* Vibrant Orange */
+    color: #fff; /* Vibrant Orange */
     font-size: 30px;
     font-weight: 600;
     text-align: center;

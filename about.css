@@ -8,7 +8,7 @@
     font-family: 'Poppins', sans-serif;
 }
 body{
-    background: url("file:///C:/Users/stell/OneDrive/Desktop/IA%232/Peak/Login%26Reg/peakpic.jpg");
+    background: #4A90E2;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -21,6 +21,7 @@ body{
     min-height: 110vh;
     background: rgba(39, 39, 39, 0.4);
 }
+
 .nav{
     position: fixed;
     top: 0;
@@ -32,14 +33,17 @@ body{
     background: linear-gradient(rgba(22, 18, 18, 0.6), transparent);
     z-index: 100;
 }
+
 .nav-logo p{
-    color: bisque;
+    color:  #1E2A38;
     font-size: 25px;
     font-weight: 600;
 }
+
 .nav-menu ul{
     display: flex;
 }
+
 .nav-menu ul li{
     list-style-type: none;
 }
@@ -51,20 +55,20 @@ body{
     margin: 0 25px;
 }
 .link:hover, .active{
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px solid #4A90E2;
 }
 .nav-button .btn{
     width: 130px;
     height: 40px;
     font-weight: 500;
-    background: rgba(255, 255, 255, 0.4);
+    background:#4A90E2;
     border: none;
     border-radius: 30px;
     cursor: pointer;
     transition: .3s ease;
 }
 .btn:hover{
-    background: rgba(255, 255, 255, 0.3);
+    background:#061e47 ;
 }
 #registerBtn{
     margin-left: 15px;
@@ -87,6 +91,6 @@ p{
 
 h1 , h2{
     text-align: center;
-    color: bisque;
+    color:#4A90E2;
     font-size: larger;
 }

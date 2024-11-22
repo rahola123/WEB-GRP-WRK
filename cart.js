@@ -92,13 +92,13 @@ function checkout() {
     // Save cart to localStorage before checkout
     saveToLocalStorage();
     // Redirect to the checkout page (adjust the path as needed)
-    window.location.href = "file:///C:/Users/stell/OneDrive/Peak/Invoice/Invoice.html";
+    window.location.href = "Invoice1.html";
   }
 }
 
 // Function to close the cart view (redirect to product catalog or previous page)
 function closeCart() {
-  window.location.href ="file:///C:/Users/stell/OneDrive/Peak/Products/NewPro.html"; // Adjust this to your desired page
+  window.location.href ="Products.html"; // Adjust this to your desired page
 }
 
 // Function to save cart data to localStorage

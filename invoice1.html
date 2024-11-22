@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoice</title>
+  <style>
+    * {  
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background:#4A90E2;
+    background-size: cover;
+    overflow: auto;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 110vh;
+    background: rgba(39, 39, 39, 0.4);
+}
+
+.nav {
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 100px;
+    line-height: 100px;
+    background: linear-gradient(rgba(22, 18, 18, 0.6), transparent);
+    z-index: 100;
+}
+
+.nav-logo p {
+    color: #fff;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.nav-menu ul {
+    display: flex;
+}
+
+.nav-menu ul li {
+    list-style-type: none;
+}
+
+.nav-menu ul li .link {
+    text-decoration: none;
+    font-weight: 500;
+    color: #fff;
+    padding-bottom: 15px;
+    margin: 0 25px;
+}
+
+.link:hover, .active {
+    border-bottom: 2px solid #4A90E2;
+}
+
+.nav-button .btn {
+    width: 130px;
+    height: 40px;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 20px;
+    }
+    .invoice-container {
+      background-color: #fff;
+      max-width: 600px;
+      margin: auto;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    .customer-info, .items-table, .total {
+      margin-bottom: 20px;
+    }
+    .items-table table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .items-table th, .items-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    .total {
+      text-align: right;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <nav class="nav">
+        <div class="nav-logo">
+            <p>Peak Fitness</p>
+        </div>
+        <div class="nav-menu" id="navMenu">
+            <ul>
+                <li><a href="Login1.html" class="link">Signout</a></li>
+                <li><a href="About.html" class="link">About</a></li>
+            </ul>
+        </div>
+    </nav>
+  <div class="invoice-container">
+    <h1>Invoice</h1>
+    <div class="customer-info">
+      <h2>Customer Information</h2>
+      <p><strong>Name:</strong> <span id="customer-name"></span></p>
+      <p><strong>Email:</strong> <span id="customer-email"></span></p>
+      <p><strong>Address:</strong> <span id="customer-address"></span></p>
+    </div>
+    <div class="items-table">
+      <h2>Items Purchased</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody id="items-list"></tbody>
+      </table>
+    </div>
+    <div class="total">
+      <strong>Grand Total: $<span id="grand-total"></span></strong>
+    </div>
+    <button onclick="window.print()">Print Invoice</button>
+  </div>
+  <script src="invoice.js"></script>
+</body>
+</html>

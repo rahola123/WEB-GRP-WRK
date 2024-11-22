@@ -9,7 +9,7 @@
 }
 
 body {
-    background: url("file:///C:/Users/stell/OneDrive/Desktop/IA%232/Peak/Login%26Reg/peakpic.jpg") no-repeat center center fixed;
+    background: #4A90E2;
     background-size: cover;
     overflow: auto;
 }
@@ -35,7 +35,7 @@ body {
 }
 
 .nav-logo p {
-    color: bisque;
+    color: #fff;
     font-size: 25px;
     font-weight: 600;
 }
@@ -57,7 +57,7 @@ body {
 }
 
 .link:hover, .active {
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px solid #4A90E2;
 }
 
 .nav-button .btn {
@@ -72,7 +72,7 @@ body {
 }
 
 .btn:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: #061e47;
 }
 
 #registerBtn {
@@ -99,10 +99,10 @@ section {
     max-width: 600px;
     margin: auto;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #061e47;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: bisque;
+    background-color: #fff;
 }
 
 header {

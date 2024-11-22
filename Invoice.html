@@ -15,69 +15,65 @@
         </div>
         <div class="nav-menu" id="navMenu">
             <ul>
-                <li><a href="file:///C:/Users/stell/OneDrive/Peak.html" class="link">Signout</a></li>
-                <li><a href="file:///C:/Users/stell/OneDrive/Peak/About/About.html" class="link">About</a></li>
+                <li><a href="Login1.html" class="link">Signout</a></li>
+                <li><a href="About.html" class="link">About</a></li>
             </ul>
         </div>
     </nav>
-
-
-
-
-    <section>
-        <div>
-            <h1>
-               
-                    <form id="paymentForm">
-                    
-                        <label for="cardname">Name on Card</label><br>
-                        <input type="text" id="cardname" name="cardname" placeholder="John More Doe"><br><br>
-                    
-                        <label for="cardnumber">Credit Card Number</label><br>
-                        <input type="text" id="cardnumber" name="cardnumber" placeholder="1111222233334444"><br><br>
-                    
-                        <label for="expmonth">Exp Month</label><br>
-                        <input type="number" id="expmonth" name="expmonth" placeholder="09" min="1" max="12"><br><br>
-                    
-                        <label for="expyear">Exp Year</label><br>
-                        <input type="number" id="expyear" name="expyear" placeholder="2024" min="2024"><br><br>
-                    
-                        <label for="cvv">CVV</label><br>
-                        <input type="text" id="cvv" name="cvv" placeholder="000"><br><br>
-                    
-                        <label for="Pay">Payment Amount</label><br>
-                        <input type="number" id="Pay" name="Pay" placeholder="Eg: $1000" min="1"><br><br>
-                    
-                        <button type="button" id=check onclick="validationFinal()" value="Submit Payment" >Pay for Products</button>
-
-                        <button type="button" id=print onclick="placeOrder()">Get Invoice</button>
-
-                        <button type="button" onclick="cancel()">Cancel</button>
-                    </form>
-
-         
-                    
-                </div>
-            </h1>
-    </section>
     
     <section>
         <div class="invoice-container">
-            <h1>Final Bill</h1>
+            <h1>Invoice</h1>
             <h2>Your Items</h2>
             <div id="items-list"></div>
             <p id="total-amount"></p>
-            <p id="dis-amount"></p>
             <p id="tax-amount"></p>
-            <p id="Ship-amount"></p>
-            <p id="total-amount"></p>
             <p id="final-amount"></p>
+            <button aria-label="Print this invoice" onclick="printInvoice()">Print Invoice</button>
+            <button aria-label="Cancel and return to shopping" onclick="cancel()">Cancel</button>
         </div>
     </section>
 </div>
 
-<script src="C.js"></script>
+<script>
+    // Define the tax rate
+    const TAX_RATE = 0.05; // 5%
+
+    // Get cart data from local storage
+    const cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const totalAmount = parseFloat(localStorage.getItem('totalAmount')) || 0;
+
+    const itemsListDiv = document.getElementById('items-list');
+    if (cart.length > 0) {
+        cart.forEach(item => {
+            const itemDiv = document.createElement('div');
+            itemDiv.innerText = `${item.name} - $${item.price.toFixed(2)} (Quantity: ${item.quantity})`;
+            itemsListDiv.appendChild(itemDiv);
+        });
+    } else {
+        itemsListDiv.innerText = 'No items in your cart.';
+        itemsListDiv.style.color = 'red'; 
+    }
+
+    document.getElementById('total-amount').innerText = `Subtotal: $${totalAmount.toFixed(2)}`;
+
+    // Calculate tax and final amount
+    const taxAmount = totalAmount * TAX_RATE;
+    const finalAmount = totalAmount + taxAmount;
+
+    document.getElementById('tax-amount').innerText = `Tax (5%): $${taxAmount.toFixed(2)}`;
+    document.getElementById('final-amount').innerText = `Total Amount: $${finalAmount.toFixed(2)}`;
+
+    function printInvoice() {
+        window.print();
+    }
+
+    function cancel() {
+        if (confirm("Are you sure you want to cancel?")) {
+            window.location.href = "file:///C:/Users/stell/OneDrive/Desktop/IA%232/Peak/Products/Products.html";
+        }
+    }
+</script>
 
 </body>
 </html>
-
