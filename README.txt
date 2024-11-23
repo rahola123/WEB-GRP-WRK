@@ -13,13 +13,9 @@ Peak Fitness is a simple e-commerce website designed with HTML, CSS, and JavaScr
 ***Running the Website***
 
 1. Ensure all the files are within the same folder.
-2. Open Peak.html in any browser.
-3. You may sign in using default credentials:
-
-Username: admin
-Password: admin123
-
-4. Upon a successful login, you will be redirected to the products page where you may add or remove items from your cart as you wish.
+2. Open Login1.html in any browser.
+3. You may sign in by registering with your TRN and personal information.
+4. Upon a successful registration, you will be redirected to the products page where you may add or remove items from your cart as you wish.
 5. To checkout, head to your cart and click Check Out to fill in payment info and billing and shipping information.
 6. Finally, you can pay and generate your invoice.
 
@@ -34,6 +30,10 @@ Password: admin123
 
 ------------------
 
+
+**Additional Functionality**
+- Demographic Data Filtering: Functionality to view the age ranges and genders of registered users.
+- Invoice Viewing: Functionality to view all invoices, and search through them via trn.
 
 
 
@@ -69,7 +69,7 @@ Raheem Olakunle
 
 ID: 2304979
 Email: raheemok90@gmail.com
-Role: Main Coder
+Role: Main JS & HTML
 
 
 ------------------
@@ -89,7 +89,7 @@ Khaliyah Davis
 
 ID: 2303823
 Email: khaliyahdavis475@gmail.com
-Role: Coding & Spearhead
+Role: Main HTML & CSS
 
 
 ------------------
@@ -99,4 +99,4 @@ Mikel Sulph
 
 ID: 2305261
 Email: miksul64@gmail.com
-Role: This readme  & sitemaps
+Role: This readme & sitemaps
